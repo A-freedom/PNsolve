@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
         itmes = IntArray(numberOFItems)
         getNmpers()
         val runTime = measureNanoTime {
-            getBagerOne()
+            getBigerOne()
             createArray()
             laying()
         }
@@ -43,8 +43,19 @@ fun createArray() {
     finalCountArray = BooleanArray(biggestOne)
 }
 
-fun getBagerOne() {
-    //TODO fix this function i dont have any idea how should fix this
+fun getBigerOne() {
+//    int i;
+//    // Initialize maximum element
+//    int max = arr[0];
+//    // Traverse array elements from second and
+//    // compare every element with current max
+//    for (i = 1; i < arr.length; i++)
+//    if (arr[i] > max) {max = arr[i];}
+    var max = 0
+    for (i in 0 until itmes.size){
+        if (itmes[i] > max){max = itmes[i] }
+    }
+    biggestOne = max+1
 }
 
 fun getNmpers() {
