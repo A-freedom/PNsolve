@@ -3,70 +3,61 @@ import kotlin.system.measureNanoTime
 class TheNewOne {
     private var numberOFItems = 0
     private var itmes = IntArray(0)
-    private val max = 10000000
-    private val min = 0
+    private var max = 10000000
+    private var min = 0
     private var biggestOne: Int = 0
     private var finalCountArray = BooleanArray(0)
-    init {
-        numberOFItems = max
-        biggestOne = max + 1
-        for (i in 0 until 100) {
-            numberOFItems += 10000
-            itmes = IntArray(numberOFItems)
-            getNumber()
-            val runTime = measureNanoTime {
-                getBiggestOne()
-                createArray()
-                laying()
-            }
-            println("(${runTime.div(1E4).toInt()},${numberOFItems.div(1E4).toInt()})")
+    fun run(max: Int, min: Int):String {
+        this.max = max
+        this.min = min
+        this.numberOFItems = this.max
+        this.biggestOne = this.max + 1
+
+        this.itmes = IntArray(this.numberOFItems)
+        this.getNumbers()
+        val runTime = measureNanoTime {
+            this.getBiggestOne()
+            this.createArray()
+            this.laying()
         }
+//            println("(${runTime.div(1E4).toInt()},${this.numberOFItems.div(1E4).toInt()})")
+        return "($runTime,${this.numberOFItems})"
+
+
     }
 
     fun show() {
-        for (i in 0 until biggestOne) {
-            if (finalCountArray[i]) {
+        for (i in 0 until this.biggestOne) {
+            if (this.finalCountArray[i]) {
                 println(i)
             }
         }
     }
 
     private fun laying() {
-        for (i in 0 until numberOFItems) {
-            finalCountArray[itmes[i]] = true
+        for (i in 0 until this.numberOFItems) {
+            this.finalCountArray[this.itmes[i]] = true
         }
     }
 
     private fun createArray() {
-        finalCountArray = BooleanArray(biggestOne)
+        this.finalCountArray = BooleanArray(this.biggestOne)
     }
 
     private fun getBiggestOne() {
         var max = 0
-        for (i in 0 until itmes.size) {
-            if (itmes[i] > max) {
-                max = itmes[i]
+        for (i in 0 until this.itmes.size) {
+            if (this.itmes[i] > max) {
+                max = this.itmes[i]
             }
         }
-        biggestOne = max + 1
+        this.biggestOne = max + 1
     }
 
-    private fun getNumber() {
-        for (i in 0 until numberOFItems) {
-            itmes[i] = ((Math.random() * max + 1).toInt() + min)
+    private fun getNumbers() {
+        for (i in 0 until this.numberOFItems) {
+            this.itmes[i] = ((Math.random() * this.max + 1).toInt() + this.min)
         }
     }
 }
 
-fun main(args: Array<String>) {
-    while (true){
-        print("do you wanna show the data : ")
-        val s = readLine()
-        if ("n" == s){
-            TheNewOne()
-        }else{
-            val d = TheNewOne()
-            d.show()
-        }
-    }
-}
