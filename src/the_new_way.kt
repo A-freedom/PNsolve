@@ -18,7 +18,7 @@ class TheNewOne {
         val runTime = measureNanoTime {
             this.getBiggestOne()
             this.createArray()
-            this.laying()
+            this.sort()
         }
 //            println("(${runTime.div(1E4).toInt()},${this.numberOFItems.div(1E4).toInt()})")
         return "($runTime,${this.numberOFItems})"
@@ -34,7 +34,7 @@ class TheNewOne {
         }
     }
 
-    private fun laying() {
+    private fun sort() {
         for (i in 0 until this.numberOFItems) {
             this.finalCountArray[this.itmes[i]] = true
         }

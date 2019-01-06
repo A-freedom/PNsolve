@@ -13,13 +13,13 @@ class TheOldOne{
         this.numberOFItems = this.max
         this.getNumbers()
         val runTime = measureNanoTime {
-            this.laying()
+            this.sort()
         }
 //        println("(${runTime.div(1E4).toInt()},${this.numberOFItems.div(1E4).toInt()})")
         return "($runTime,${this.numberOFItems})"
     }
 
-    private fun laying() {
+    private fun sort() {
         while (!items.isEmpty()) {
             var it = items[0]
             var saveI = 0
